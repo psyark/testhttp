@@ -8,9 +8,9 @@ import (
 
 type Option func(w *responseWriter) error
 
-func TestHTTP(r *http.Request, options ...Option) error {
+func TestHTTP(handler http.Handler, request *http.Request, options ...Option) error {
 	w := &responseWriter{body: bytes.NewBuffer(nil)}
-	http.DefaultServeMux.ServeHTTP(w, r)
+	handler.ServeHTTP(w, request)
 	for _, o := range options {
 		if err := o(w); err != nil {
 			return err
