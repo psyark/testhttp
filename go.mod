@@ -1,3 +1,4 @@
+// Deprecated: don't use
 module github.com/psyark/testhttp
 
 go 1.21
